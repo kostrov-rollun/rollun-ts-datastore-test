@@ -56,7 +56,7 @@ export default class LocalDataClient<T extends { [key: string]: any }> {
 			return this.data as unknown as Array<U>;
 		}
 
-		console.log('query local', query)
+		console.log('query local', { query, data: JSON.stringify(this.data) })
 
 		const res = _.compose(
 			this._getLimitHandler(query?.limitNode),
@@ -66,7 +66,7 @@ export default class LocalDataClient<T extends { [key: string]: any }> {
 			this._getQueryHandler(query?.queryNode)
 		)(this.data) as unknown as Array<U>;
 
-		console.log('res local', res);
+		console.log('res local', { res, query, data: JSON.stringify(this.data) });
 
 		return res;
 	}
